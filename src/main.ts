@@ -8,7 +8,7 @@ import liff from '@line/liff'
 
 const initLiff = async () => {
   try {
-    await liff.init({ liffId: 'YOUR_LIFF_ID' }) // from LINE Developer Console
+    await liff.init({ liffId: '2007729444-MPKyn88m' }) // from LINE Developer Console
     console.log('LIFF init success')
   } catch (err) {
     console.error('LIFF init error:', err)

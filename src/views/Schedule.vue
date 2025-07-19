@@ -15,7 +15,7 @@ const { RangePicker } = TimePicker;
 const rawData = courtData;
 const filterCourt = ref<number | null>(null);
 const filterTime = ref<[dayjs.Dayjs, dayjs.Dayjs] | null>(null);
-const filterStatus = ref<string | null>(null);
+const filterStatus = ref<StatusCourt | null>(null);
 
 const twoDigit = (n: number): string => n.toString().padStart(2, "0");
 
@@ -62,7 +62,19 @@ const getMergedSchedule = (row: DataType) => {
       count++;
     }
   }
+
+  if (filterStatus.value) {
+    return blocks.filter((block) => block.text === filterStatus.value);
+  }
+
   return blocks;
+};
+
+const filterStatusData = (status: StatusCourt) => {
+  return (
+    filterStatus.value === null ||
+    (filterStatus.value && filterStatus.value === status)
+  );
 };
 
 const filteredData = computed(() => {
@@ -136,30 +148,32 @@ const columns: TableColumnsType = [
 <template>
   <div class="table-controls">
     <div class="center">
-      Filter Court No: 
-      <a-input-number
-        v-model:value="filterCourt"
-        :min="1"
-        :max="50"
-        placeholder="e.g. 10"
-      />
+      <div class="top-container">
+        <div>
+          <div>Court No:</div>
+        <a-input-number
+        class="gap"
+          v-model:value="filterCourt"
+          :min="1"
+          :max="50"
+          placeholder="e.g. 10"
+        />
+        </div>
+      
+      <div>
+        Time Range:
+        <a-time-range-picker class="gap" />
+      </div>
+      </div>
     </div>
     <div>
-      Time Range:
-      <RangePicker v-model:value="filterTime" format="HH:mm" />
-    </div>
-    <div>
-      Status:
-      <a-select
-        v-model:value="filterStatus"
-        allow-clear
-        placeholder="Select status"
-        style="width: 140px"
-      >
-        <a-select-option value="Available">Available</a-select-option>
-        <a-select-option value="Occupied">Occupied</a-select-option>
-        <a-select-option value="Maintenance">Maintenance</a-select-option>
-      </a-select>
+      <div>Status:</div>
+      <a-radio-group class="status-filter gap" v-model:value="filterStatus">
+        <a-radio-button value="Available">Available</a-radio-button>
+        <a-radio-button value="Occupied">Occupied</a-radio-button>
+        <a-radio-button value="Maintenance">Maintenance</a-radio-button>
+        <a-radio-button value="">Clear</a-radio-button>
+      </a-radio-group>
     </div>
   </div>
   <div class="table-wrapper">
@@ -192,6 +206,8 @@ const columns: TableColumnsType = [
   gap: 12px;
   flex-wrap: wrap;
   margin: 16px 12px;
+  margin-top: 120px;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {
@@ -209,7 +225,26 @@ const columns: TableColumnsType = [
 
   .center {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gap {
+    margin-top: 3px;
+  }
+
+  .status-filter {
+    flex: 1;
+    gap: 5px;
+    max-width: 412px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .top-container {
+    display: flex;
     flex-direction: row;
+    gap: 5px;
     align-items: center;
   }
 }

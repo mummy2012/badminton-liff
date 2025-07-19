@@ -25,8 +25,8 @@ const sendMessage = async () => {
 <template>
   <div>
     <DefaultLayout/>
-    <button @click="sendMessage">Send Message</button>
     <div class="page-container">
+      <!-- <button @click="sendMessage">Send Message</button> -->
       <router-view />
     </div>
   </div>
@@ -48,7 +48,6 @@ const sendMessage = async () => {
 
 .page-container {
   margin-top: 60px;
-  padding: 0 16px;
   height: 100%;
   overflow-y: auto;
 }

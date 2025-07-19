@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import dayjs, { Dayjs } from 'dayjs'
+import { router } from '../router'
 
 const selectedDate = ref<Dayjs>(dayjs())
 
 const onSelect = (date: Dayjs) => {
   console.log('Selected:', date.format('YYYY-MM-DD'))
+  router.push({ path: `/schedule/${date.format('YYYY-MM-DD')}` })
 }
 </script>
 

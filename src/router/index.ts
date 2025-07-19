@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Contact from '../views/Contact.vue'
+import schedule from '../views/schedule.vue'
 
 
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
-  { path: '/contact', name: 'Contact', component: Contact }
+  { path: '/schedule/:date', name: 'Schedule', component: schedule, props: true },
 ]
 
 export const router = createRouter({

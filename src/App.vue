@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import liff from '@line/liff'
+import DefaultLayout from './components/DefaultLayout.vue'
 
 const name = ref('')
 
@@ -23,13 +24,11 @@ const sendMessage = async () => {
 
 <template>
   <div>
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/contact">About</router-link> |
-    </nav>
+    <DefaultLayout/>
     <button @click="sendMessage">Send Message</button>
-
-    <router-view />
+    <div class="page-container">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -46,4 +45,12 @@ const sendMessage = async () => {
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
+
+.page-container {
+  margin-top: 60px;
+  padding: 0 16px;
+  height: 100%;
+  overflow-y: auto;
+}
+
 </style>

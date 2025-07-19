@@ -14,12 +14,12 @@ onMounted(async () => {
   }
 })
 
-const sendMessage = async () => {
-  await liff.sendMessages([
-    { type: 'text', text: 'Hello from Vue 3 LIFF!' }
-  ])
-  liff.closeWindow()
-}
+// const sendMessage = async () => {
+//   await liff.sendMessages([
+//     { type: 'text', text: 'Hello from Vue 3 LIFF!' }
+//   ])
+//   liff.closeWindow()
+// }
 </script>
 
 <template>

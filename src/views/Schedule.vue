@@ -3,14 +3,10 @@ import { ref, computed, h } from "vue";
 import {
   Tag,
   type TableColumnsType,
-  TimePicker,
-  InputNumber,
-  Select,
 } from "ant-design-vue";
 import courtData from "../mock/mock_court_schedule.json";
 import dayjs from "dayjs";
 
-const { RangePicker } = TimePicker;
 
 const rawData = courtData;
 const filterCourt = ref<number | null>(null);
@@ -70,15 +66,8 @@ const getMergedSchedule = (row: DataType) => {
   return blocks;
 };
 
-const filterStatusData = (status: StatusCourt) => {
-  return (
-    filterStatus.value === null ||
-    (filterStatus.value && filterStatus.value === status)
-  );
-};
-
 const filteredData = computed(() => {
-  return rawData.filter((row: DataType) => {
+  return rawData.filter((row: any) => {
     const courtNo = parseInt(row.court.replace(/\D/g, ""));
     const matchCourt =
       filterCourt.value === null || filterCourt.value === courtNo;

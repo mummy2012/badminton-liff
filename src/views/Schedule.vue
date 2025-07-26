@@ -138,7 +138,7 @@ const columns: TableColumnsType = [
   <div class="table-controls">
     <div class="center">
       <div class="top-container">
-        <div>
+        <div class="column-center">
           <div>Court No:</div>
         <a-input-number
         class="gap"
@@ -149,7 +149,7 @@ const columns: TableColumnsType = [
         />
         </div>
       
-      <div>
+      <div class="column-center">
         Time Range:
         <a-time-range-picker class="gap" />
       </div>
@@ -233,6 +233,13 @@ const columns: TableColumnsType = [
   .top-container {
     display: flex;
     flex-direction: row;
+    gap: 5px;
+    align-items: center;
+  }
+  
+  .column-center {
+    display: flex;
+    flex-direction: column;
     gap: 5px;
     align-items: center;
   }
